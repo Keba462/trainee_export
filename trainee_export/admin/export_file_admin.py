@@ -9,7 +9,7 @@ from edc_model_admin import (
 from edc_model_admin import audit_fieldset_tuple
 from edc_subject_dashboard import ModelAdminSubjectDashboardMixin
 from trainee_export.forms.export_file_form import ExportFileForm
-from trainee_export.models.export import ExportFile
+from trainee_export.models.export_file import ExportFile
 from ..admin_site import trainee_export_admin
 
 

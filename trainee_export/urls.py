@@ -13,15 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
+
 from django.urls import path
 
 from edc_dashboard import UrlConfig
-from trainee_reports.views.home_view import HomeView
-from trainee_reports.views.listboard_view import ListBoardView
+from trainee_export.views.home_view import HomeView
+from trainee_export.views.listboard_view import ListBoardView
 
 from .patterns import export_identifier
-from .admin_site  import trainee_export_admin
+from .admin_site import *
 
 app_name = 'trainee_export'
 

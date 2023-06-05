@@ -76,3 +76,4 @@ class ExportFile(SiteModelMixin, SearchSlugModelMixin, BaseUuidModel):
             return self.document.url
         except ValueError:
             return None
+        

@@ -13,7 +13,7 @@ from edc_base.view_mixins import EdcBaseViewMixin
 from edc_dashboard.view_mixins import ListboardFilterViewMixin, SearchFormViewMixin
 from edc_dashboard.views import ListboardView
 from edc_navbar import NavbarViewMixin
-from trainee_export.models.export import ExportFile
+from trainee_export.models.export_file import ExportFile
 from trainee_export.model_wrappers.export_file_model_wrapper import ExportFileModelWrapper
 
 from ..identifiers import ExportIdentifier
@@ -62,8 +62,9 @@ class ListBoardView(NavbarViewMixin, EdcBaseViewMixin, ListBoardViewMixin,
             self.generate_export(thread_name='trainee_all_export',
                                  thread_target=self.download_all_data,
                                  description='Trainee All Export')
-
+            
         context.update(export_add_url=self.model_cls().get_absolute_url())
+        
         return context
 
     def generate_export(self, thread_name=None, active_download=False,

@@ -1,5 +1,5 @@
 from django import forms
-from trainee_export.models.export import ExportFile
+from trainee_export.models.export_file import ExportFile
 
 
 class ExportFileForm(forms.ModelForm):

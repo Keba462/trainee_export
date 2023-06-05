@@ -1,46 +1,53 @@
-{% extends 'edc_base/base.html' %}
+{% extends "edc_dashboard/listboard.html" %}
+{% load admin_urls %}
+{% load edc_base_extras %}
 
-{% load static %}
-{% load crispy_forms_tags %}
-{% load follow_extras %}
 {% block extra-scripts %}
-	{{ block.super }}
-	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
-	<script type="text/javascript">
-	$(document).ready(function() {
-	    $('#missing-crfs').DataTable({
-	    	"ordering": false
-	    });
-	} );
-	</script>
+{{ block.super }}
 
-	<script type="text/javascript">
-
-	  jQuery(function() {
-	    jQuery('#users').change(function() {
-	        this.form.submit();
-	    });
-	});
-	</script>
+<script type="text/javascript">
+</script>
 {% endblock extra-scripts %}
+             
+{% block listboard_panel %}
+    <a id="download_td_files" title="Generate all Export" class="btn btn-sm btn-default" role="button" 
+        href="{{ export_listboard_url }}?download=1">
+            <i class="fa fa-plus fa-sm"></i> Generate Trainee Export
+    </a>
+    <a id="return_to_home" title="go back" class="btn btn-sm btn-default" role="button" 
+        href="/">
+            <i class="fa fa-arrow-left fa-sm"></i> Go Back
+    </a>
 
-{% block main %}
-<div class="container">
-   <div class="row">
-    
-    <p></p>
-    <h1>Study data export</h1>
-    <p>Generate and download study data sets from the tables below.</p>
-    <p> </p><p> </p>
-    
-        <div class="col-md-10 col-md-offset-1">
+{% endblock listboard_panel %}
 
-			{% include "trainee_export/non_crf_export.html" %}            
-            {% include "trainee_export/subject_crf_export.html" %}
+{% block listboard_table_button_column %}
+{% endblock listboard_table_button_column %}
 
-		</div>
-	</div>
-</div>
-{% endblock main %}
+{% block listboard_table_header %}
+    <!-- begin results header -->
+    <th>#</th>
+    <th>Export Identifier</th>
+    <th>Description</th>
+    <th>study</th>
+    <th>Download Export</th>
+    <th>Uploaded Date</th>
+    <th>Estimated File Preparation Time (Minutes)</th>
+    <th>User</th>
+    <!-- end results header -->
+{% endblock listboard_table_header %}
+
+
+{% block listboard_table_columns %}
+	<td>{{ result.export_identifier }} </td>
+	<td>{{ result.description }} </td>
+	<td>{{ result.study }} </td>
+	<td>{% if result.file_url %}
+	   <a href={{ result.file_url }}><i class="fa fa-download fa-sm"></i> file download</a>
+	{% else %}
+	    Pending.. 
+	{% endif %}</td>
+	<td>{{result.uploaded_at}}</td>
+	<td>{{result.files_generation_time}}</td>
+    <td nowrap>{{ result.user_created }}</td>
+{% endblock listboard_table_columns %}

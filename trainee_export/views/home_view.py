@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 from edc_base.view_mixins import EdcBaseViewMixin
 from edc_navbar import NavbarViewMixin
 from trainee_export.views.listboard_view_mixin import ListBoardViewMixin
-from trainee_export.models.export import ExportFile
+from trainee_export.models.export_file import ExportFile
 
 from ..identifiers import ExportIdentifier
 
@@ -42,7 +42,7 @@ class HomeView(ListBoardViewMixin, EdcBaseViewMixin,
                                  thread_target=self.download_non_crf_data,
                                  description='Trainee Non CRF Export')
         elif download == '3':
-            self.generate_export(thread_name='Trainee_subject_crf_export',
+            self.generate_export(thread_name='trainee_subject_crf_export',
                                  thread_target=self.download_subject_data,
                                  description='Trainee Subject CRF Export')
         non_crf_exports = ExportFile.objects.filter(

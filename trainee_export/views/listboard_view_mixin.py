@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from edc_base.utils import get_utcnow
-from trainee_export.models.export import ExportFile
+from trainee_export.models.export_file import ExportFile
 
 from ..export_data_mixin import ExportDataMixin
 from ..export_methods import ExportMethods

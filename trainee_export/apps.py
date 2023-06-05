@@ -12,11 +12,12 @@ class AppConfig(DjangoAppConfig):
     export_date =  '/documents/trainee_export_' + today_date
     subject_path = settings.MEDIA_ROOT + export_date + '/subject/'
     non_crf_path = settings.MEDIA_ROOT + export_date + '/non_crf/'
+    admin_site_name = 'trainee_export_admin'
 
 
 
 class EdcBaseAppConfig(BaseEdcBaseAppConfig):
-    project_name = 'Flourish Export'
+    project_name = 'Trainee Export'
     institution = 'Botswana-Harvard AIDS Institute'
 
 

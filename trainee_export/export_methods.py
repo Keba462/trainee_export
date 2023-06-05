@@ -179,8 +179,3 @@ class ExportMethods:
             )
 
         return data
-
-    def follow_data_dict(self, model_obj=None):
-        data = model_obj.__dict__
-        data = self.encrypt_values(obj_dict=data, obj_cls=model_obj.__class__)
-        return data
