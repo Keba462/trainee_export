@@ -29,7 +29,7 @@ class ListBoardViewMixin:
             export_crf_data.export_crfs(
                 crf_list=subject_crfs_list,
                 crf_data_dict=ExportMethods().subject_crf_data_dict,
-                study='tarinee_subject')
+                study='trainee_subject')
 
 
     def export_non_crf_data(self, export_path=None):
@@ -73,7 +73,7 @@ class ListBoardViewMixin:
             start = time.perf_counter()
             today_date = datetime.datetime.now().strftime('%Y%m%d')
 
-            zipped_file_path = 'documents/' + export_identifier + '_tarinee_export_' + today_date + '.zip'
+            zipped_file_path = 'documents/' + export_identifier + '_trainee_export_' + today_date + '.zip'
             dir_to_zip = settings.MEDIA_ROOT + '/documents/' + export_identifier + '_trainee_export_' + today_date
 
             export_path = dir_to_zip + '/subject/'

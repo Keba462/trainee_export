@@ -4,6 +4,8 @@ import threading
 import time
 
 from django.contrib import messages
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.generic import TemplateView
 from edc_base.view_mixins import EdcBaseViewMixin
 from edc_navbar import NavbarViewMixin
@@ -49,6 +51,8 @@ class HomeView(ListBoardViewMixin, EdcBaseViewMixin,
             description='Trainee Non CRF Export').order_by('-uploaded_at')[:10]
         subject_crf_exports = ExportFile.objects.filter(
             description='Trainee Subject CRF Export').order_by('-uploaded_at')[:10]
+       
+        #breakpoint()
         context.update(
             non_crf_exports=non_crf_exports,
             subject_crf_exports=subject_crf_exports,
@@ -73,13 +77,13 @@ class HomeView(ListBoardViewMixin, EdcBaseViewMixin,
             is_clean = self.is_clean(description=description)
             if is_clean:
 
+                #breakpoint()
+
                 download_thread = threading.Thread(
                     name=thread_name, target=thread_target,
                     daemon=True)
                 download_thread.start()
-                last_doc = ExportFile.objects.filter(
-                    description=description,
-                    download_complete=True).order_by('created').last()
+                last_doc = ExportFile.objects.filter(description=description,download_complete=True).order_by('created').last()
 
                 if last_doc:
                     start_time = datetime.datetime.now().strftime(
@@ -98,3 +102,6 @@ class HomeView(ListBoardViewMixin, EdcBaseViewMixin,
                         self.request, messages.INFO,
                         (f'Download for {description} initiated, you will receive an email once '
                          'the download is completed.'))
+                    
+
+        

@@ -15,7 +15,7 @@ exclude_m2m_fields = exclude_fields + ['display_index', 'field_name',
                                        'name', 'version']
 
 subject_crfs_list = [
-    'educationalquestionnaire',
+    'educationalquestionaire',
     'demographic',
     'communityengagement'
 
